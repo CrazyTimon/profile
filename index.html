@@ -17,9 +17,6 @@
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body style="background-color: #cccccc;">
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
         <div class="road road_vertical" style="left:371px;top:1px;">
             <div class="road-devided_line"></div>
         </div>
@@ -51,21 +48,61 @@
 
         </div>
 
-        <!--<div class="man">
-            <div class="man-head"></div>
-            <div class="man-body"></div>
-            <div class="man-foot"></div>
-            <input type="hidden" name="posX" value="0">
-            <input type="hidden" name="posY" value="0">
-        </div>-->
-        <!-- Add your site or application content here -->
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <script>
-            function move(way, step){
+            /*
+            *
+            * соединения
+            * bottomright - (tr)
+            * точки соединения(верх, право)
+            *
+            * topleft - (bl)
+            * точки соединения(низ, лево)
+            *
+            * bottomleft- (tl)
+            * точки соединения(верх, лево)
+			
+            * topright- (br)
+            * точки соединения(низ, право)
+            *
+            * */
+
+            var road = function(){
+                var vector = ['from', 'to']; /*!top == bottom; !left == right*/
+                const top = 'top';
+                const bottom = 'bottom';
+                const right = 'right';
+                const left = 'left';
+                var SetVector = function( from, to ){
+                    vector['from'] = from;
+					vector['to'] = to;
+                }
+				
+				var TurnTo = function(tblr){
+					switch (tblr) {
+						case top 	: SetVector(top/* TODO */, top); break;//TODO
+						case bottom : SetVector(top/* TODO */, bottom); break;//TODO
+						case right 	: SetVector(top/* TODO */, right); break;//TODO
+						case left 	: SetVector(top/* TODO */, left); break;//TODO
+						default		: SetVector(top, top);
+					} 
+				}
+				
+				var Render = function(){
+					
+				}
+            }
+			
+			$(document).ready(function(){
+				var tmp = new road();
+				tmp.TurnTo('right');
+			});
+
+             function move(way, step){
                 var box = $('.car');
                 switch (way) {
                     case 37 : box.css({left: '-='+step+'px'}); break;
@@ -78,13 +115,6 @@
             $(document).keydown(function(e){
                 move(e.keyCode, 5);
             });
-        </script>
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
     </body>
 </html>
